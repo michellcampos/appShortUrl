@@ -1,0 +1,49 @@
+#FAZ O BUILD DA APP
+sudo docker build -t shorturl-image
+
+#SOBE O CONTAINER PARA A APP
+sudo docker run --name slim3-container -d apache-php
+
+#CRIA UM CONTAINER PARA O MYSQL
+sudo docker run --name mysql-container -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
+
+#ENTRA NO CONTAINER MYSQL
+sudo docker exec -it mysql-container bash
+
+#DEPOIS QUE ESTÁ DENTRO DO CONTAINER MYSQL
+#FAZ A CONEXÃO COM O BANCO DE DADOS
+mysql -uroot -proot -hlocalhost
+
+#CRIA A BASE DE DADOS DO PROJETO
+CREATE DATABASE app_shorturl;
+
+#SELECIONA A BASE DE DADOS DO PROJETO
+USE app_shorturl;
+
+#CRIA AS TABELAS NA BASE DE DADOS DO PROJETO
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `url` (
+  `url_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `url` varchar(100) DEFAULT NULL,
+  `shortUrl` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`url_id`),
+  KEY `fk_user_id` (`user_id`),
+  CONSTRAINT `url_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#SAIR DO CONTAINER MYSQL
+Ctrl + R
+Ctrl + D
+
+#VERIFICA QUAL O IP DO CONTAINER MYSQL
+sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' mysql-container
+
+#VERIFICA QUAL O IP DO CONTAINER DA APP
+sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' shorturl-container
