@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: michell
- * Date: 16/03/16
- * Time: 00:47
- */
 
 require __DIR__.'/../model/UrlModel.php';
 

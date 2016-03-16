@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: michell
- * Date: 16/03/16
- * Time: 02:02
- */
 
 require_once(__DIR__.'/../../config/database.php');
 
