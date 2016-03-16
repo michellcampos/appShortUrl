@@ -2,7 +2,7 @@
 sudo docker build -t shorturl-image
 
 #SOBE O CONTAINER PARA A APP
-sudo docker run --name slim3-container -d apache-php
+sudo docker run --name shorturl-container -d shorturl-image
 
 #CRIA UM CONTAINER PARA O MYSQL
 sudo docker run --name mysql-container -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
