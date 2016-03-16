@@ -1,0 +1,18 @@
+##############################################################
+##############################################################
+## INSTRUCTIONS                                             ##
+##                                                          ##
+## If you want to add new rules to this file                ##
+## follow the following steps:                              ##
+##  1. Add the new rule                                     ##
+##  2. After added the rule save and close this file        ##
+##  3. In your git repository run the following commands    ##
+##  to update git cache:                                    ##
+##     > git rm -r --cached .                               ##
+##     > git add .                                          ##
+##     > git commit -m "Updating .gitignore"                ##
+##                                                          ##
+##############################################################
+##############################################################
+
+.idea
